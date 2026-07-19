@@ -2,56 +2,12 @@
   "properties": {
     "activities": [
       {
-        "type": "Lookup",
-        "typeProperties": {
-          "source": {
-            "type": "LakehouseTableSource",
-            "sqlReaderQuery": "SELECT table_name, source_system, layer_role, primary_key, scd_type\nFROM dbo.meta_table_config\nWHERE active_flag = true\nORDER BY layer_role, table_name;",
-            "partitionOption": "None"
-          },
-          "datasetSettings": {
-            "type": "LakehouseTable",
-            "typeProperties": {
-              "schema": "dbo",
-              "table": "meta_table_config"
-            },
-            "schema": [],
-            "connectionSettings": {
-              "name": "LH_UKCC_Platform",
-              "properties": {
-                "type": "Lakehouse",
-                "typeProperties": {
-                  "artifactId": "8fb7d13b-34f4-4972-8735-c477be902ff1",
-                  "workspaceId": "00000000-0000-0000-0000-000000000000",
-                  "rootFolder": "Tables"
-                },
-                "externalReferences": {
-                  "connection": "00000000-0000-0000-0000-000000000000"
-                },
-                "annotations": []
-              }
-            },
-            "annotations": []
-          },
-          "firstRowOnly": false
-        },
-        "policy": {
-          "timeout": "0.06:00:00",
-          "retry": 1,
-          "retryIntervalInSeconds": 30,
-          "secureInput": false,
-          "secureOutput": false
-        },
-        "name": "LKP_Get_Active_Tables",
-        "dependsOn": []
-      },
-      {
         "type": "ForEach",
         "typeProperties": {
           "isSequential": false,
           "batchCount": 8,
           "items": {
-            "value": "@activity('LKP_Get_Active_Tables').output.value",
+            "value": "@json('[{\"table_name\": \"currency\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"DIM\", \"primary_key\": \"currency_code\", \"scd_type\": 1}, {\"table_name\": \"geography\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"DIM\", \"primary_key\": \"geography_id\", \"scd_type\": 1}, {\"table_name\": \"branch\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"DIM\", \"primary_key\": \"branch_id\", \"scd_type\": 2}, {\"table_name\": \"merchant_category\", \"source_system\": \"CARD_NETWORK_API\", \"layer_role\": \"DIM\", \"primary_key\": \"mcc_code\", \"scd_type\": 1}, {\"table_name\": \"reward_program\", \"source_system\": \"MARKETING_PG\", \"layer_role\": \"DIM\", \"primary_key\": \"reward_program_id\", \"scd_type\": 1}, {\"table_name\": \"card_product\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"DIM\", \"primary_key\": \"product_id\", \"scd_type\": 2}, {\"table_name\": \"campaign\", \"source_system\": \"MARKETING_PG\", \"layer_role\": \"DIM\", \"primary_key\": \"campaign_id\", \"scd_type\": 1}, {\"table_name\": \"offer\", \"source_system\": \"MARKETING_PG\", \"layer_role\": \"DIM\", \"primary_key\": \"offer_id\", \"scd_type\": 1}, {\"table_name\": \"exchange_rate\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"FACT\", \"primary_key\": \"exchange_rate_id\", \"scd_type\": 1}, {\"table_name\": \"customer\", \"source_system\": \"ORACLE_CORE\", \"layer_role\": \"DIM\", \"primary_key\": \"customer_id\", \"scd_type\": 2}, {\"table_name\": \"customer_address\", \"source_system\": \"ORACLE_CORE\", \"layer_role\": \"DIM\", \"primary_key\": \"address_id\", \"scd_type\": 2}, {\"table_name\": \"customer_employment\", \"source_system\": \"ORACLE_CORE\", \"layer_role\": \"DIM\", \"primary_key\": \"employment_id\", \"scd_type\": 2}, {\"table_name\": \"customer_income\", \"source_system\": \"ORACLE_CORE\", \"layer_role\": \"DIM\", \"primary_key\": \"income_id\", \"scd_type\": 2}, {\"table_name\": \"customer_risk_profile\", \"source_system\": \"ORACLE_CORE\", \"layer_role\": \"DIM\", \"primary_key\": \"risk_profile_id\", \"scd_type\": 2}, {\"table_name\": \"account\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"DIM\", \"primary_key\": \"account_id\", \"scd_type\": 2}, {\"table_name\": \"credit_card\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"DIM\", \"primary_key\": \"card_id\", \"scd_type\": 2}, {\"table_name\": \"credit_limit\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"DIM\", \"primary_key\": \"credit_limit_id\", \"scd_type\": 2}, {\"table_name\": \"merchant\", \"source_system\": \"CARD_NETWORK_API\", \"layer_role\": \"DIM\", \"primary_key\": \"merchant_id\", \"scd_type\": 1}, {\"table_name\": \"transaction\", \"source_system\": \"CARD_NETWORK_API\", \"layer_role\": \"FACT\", \"primary_key\": \"transaction_id\", \"scd_type\": 1}, {\"table_name\": \"payment\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"payment_id\", \"scd_type\": 1}, {\"table_name\": \"statement\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"statement_id\", \"scd_type\": 1}, {\"table_name\": \"interest_charge\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"interest_charge_id\", \"scd_type\": 1}, {\"table_name\": \"fee\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"fee_id\", \"scd_type\": 1}, {\"table_name\": \"balance_transfer\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"balance_transfer_id\", \"scd_type\": 1}, {\"table_name\": \"cash_withdrawal\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"cash_withdrawal_id\", \"scd_type\": 1}, {\"table_name\": \"emi_plan\", \"source_system\": \"CARD_MGMT_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"emi_plan_id\", \"scd_type\": 2}, {\"table_name\": \"loyalty_point\", \"source_system\": \"MARKETING_PG\", \"layer_role\": \"FACT\", \"primary_key\": \"loyalty_point_id\", \"scd_type\": 1}, {\"table_name\": \"fraud_alert\", \"source_system\": \"FRAUD_ENGINE_API\", \"layer_role\": \"FACT\", \"primary_key\": \"fraud_alert_id\", \"scd_type\": 1}, {\"table_name\": \"fraud_case\", \"source_system\": \"FRAUD_ENGINE_API\", \"layer_role\": \"FACT\", \"primary_key\": \"fraud_case_id\", \"scd_type\": 2}, {\"table_name\": \"chargeback\", \"source_system\": \"FRAUD_ENGINE_API\", \"layer_role\": \"FACT\", \"primary_key\": \"chargeback_id\", \"scd_type\": 2}, {\"table_name\": \"credit_bureau_data\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"FACT\", \"primary_key\": \"bureau_record_id\", \"scd_type\": 1}, {\"table_name\": \"delinquency\", \"source_system\": \"COLLECTIONS_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"delinquency_id\", \"scd_type\": 2}, {\"table_name\": \"collections\", \"source_system\": \"COLLECTIONS_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"collections_id\", \"scd_type\": 2}, {\"table_name\": \"write_off\", \"source_system\": \"COLLECTIONS_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"write_off_id\", \"scd_type\": 1}, {\"table_name\": \"customer_complaint\", \"source_system\": \"CRM_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"complaint_id\", \"scd_type\": 2}, {\"table_name\": \"customer_service_call\", \"source_system\": \"CRM_SQL\", \"layer_role\": \"FACT\", \"primary_key\": \"call_id\", \"scd_type\": 1}, {\"table_name\": \"digital_banking_activity\", \"source_system\": \"DIGITAL_PG\", \"layer_role\": \"FACT\", \"primary_key\": \"activity_id\", \"scd_type\": 1}, {\"table_name\": \"mobile_app_activity\", \"source_system\": \"DIGITAL_PG\", \"layer_role\": \"FACT\", \"primary_key\": \"mobile_activity_id\", \"scd_type\": 1}, {\"table_name\": \"web_banking_activity\", \"source_system\": \"DIGITAL_PG\", \"layer_role\": \"FACT\", \"primary_key\": \"web_activity_id\", \"scd_type\": 1}, {\"table_name\": \"regulatory_reporting\", \"source_system\": \"REFERENCE_SFTP\", \"layer_role\": \"FACT\", \"primary_key\": \"report_id\", \"scd_type\": 1}]')",
             "type": "Expression"
           },
           "activities": [
@@ -217,14 +173,7 @@
           ]
         },
         "name": "FE_Process_Tables_Landing_Bronze_Silver",
-        "dependsOn": [
-          {
-            "activity": "LKP_Get_Active_Tables",
-            "dependencyConditions": [
-              "Succeeded"
-            ]
-          }
-        ]
+        "dependsOn": []
       },
       {
         "type": "TridentNotebook",
