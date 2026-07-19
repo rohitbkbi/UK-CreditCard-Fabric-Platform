@@ -1,0 +1,103 @@
+table DimCard
+	lineageTag: 8c563792-6f12-4df3-91fc-3babcb5c4c67
+	sourceLineageTag: [dbo].[DimCard]
+
+	column card_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d567901-1902-4688-913d-12f2f8544d1d
+		sourceLineageTag: card_sk
+		summarizeBy: none
+		sourceColumn: card_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_id
+		dataType: string
+		lineageTag: 7a3a79c1-c850-495c-a7f4-fa7034665013
+		sourceLineageTag: card_id
+		summarizeBy: none
+		sourceColumn: card_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: 48526564-51dc-4ab3-af7f-e30db7e22ada
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_type
+		dataType: string
+		lineageTag: 2d40fc99-3aff-4759-9dfd-5c46ebfe621e
+		sourceLineageTag: card_type
+		summarizeBy: none
+		sourceColumn: card_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_network
+		dataType: string
+		lineageTag: 4f6f15da-6b8c-4855-b34e-6d386ec83b24
+		sourceLineageTag: card_network
+		summarizeBy: none
+		sourceColumn: card_network
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_status
+		dataType: string
+		lineageTag: a8ff48e8-dfa7-4a64-9e7a-ff5b0147df1a
+		sourceLineageTag: card_status
+		summarizeBy: none
+		sourceColumn: card_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_issue_date
+		dataType: dateTime
+		lineageTag: b60c4635-a729-4af1-90b4-ba918efd82c9
+		sourceLineageTag: card_issue_date
+		summarizeBy: none
+		sourceColumn: card_issue_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_start_date
+		dataType: dateTime
+		lineageTag: 44659374-fd35-4b6a-94c4-20a02842f798
+		sourceLineageTag: effective_start_date
+		summarizeBy: none
+		sourceColumn: effective_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_end_date
+		dataType: dateTime
+		lineageTag: 96344e07-30e4-4efd-b790-1d0250738eb6
+		sourceLineageTag: effective_end_date
+		summarizeBy: none
+		sourceColumn: effective_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_flag
+		dataType: boolean
+		lineageTag: db8e94d8-7302-478c-9b93-b2f1d83398b6
+		sourceLineageTag: is_current_flag
+		summarizeBy: none
+		sourceColumn: is_current_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCard = entity
+		mode: directLake
+		source
+			entityName: DimCard
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

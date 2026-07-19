@@ -1,0 +1,76 @@
+table DimMerchant
+	lineageTag: d55d2e13-0ddc-4758-9c71-637313adb408
+	sourceLineageTag: [dbo].[DimMerchant]
+
+	column merchant_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 35f4ae29-ccdb-40a8-800f-3dce6dc82e64
+		sourceLineageTag: merchant_sk
+		summarizeBy: none
+		sourceColumn: merchant_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_id
+		dataType: string
+		lineageTag: 71fdccb5-d740-4881-bb5e-6c3d006a2e7f
+		sourceLineageTag: merchant_id
+		summarizeBy: none
+		sourceColumn: merchant_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_name
+		dataType: string
+		lineageTag: 6273317c-2ac5-4b82-8729-e980bcaf080d
+		sourceLineageTag: merchant_name
+		summarizeBy: none
+		sourceColumn: merchant_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column mcc_code
+		dataType: string
+		lineageTag: a852d5ad-0dc4-46d7-9c02-ba7cd800ebe7
+		sourceLineageTag: mcc_code
+		summarizeBy: none
+		sourceColumn: mcc_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_country
+		dataType: string
+		lineageTag: b5d8760b-7ce7-4847-9684-ea9c6546ea56
+		sourceLineageTag: merchant_country
+		summarizeBy: none
+		sourceColumn: merchant_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_status
+		dataType: string
+		lineageTag: b62185d0-7ade-4ae6-afa7-346fa410e2e2
+		sourceLineageTag: merchant_status
+		summarizeBy: none
+		sourceColumn: merchant_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_rating
+		dataType: string
+		lineageTag: c6969951-e339-4dc2-98df-f5cf613bc193
+		sourceLineageTag: risk_rating
+		summarizeBy: none
+		sourceColumn: risk_rating
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimMerchant = entity
+		mode: directLake
+		source
+			entityName: DimMerchant
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

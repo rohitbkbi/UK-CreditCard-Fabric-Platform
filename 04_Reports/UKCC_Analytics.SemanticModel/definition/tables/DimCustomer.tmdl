@@ -1,0 +1,112 @@
+table DimCustomer
+	lineageTag: 8a7eece4-b5e9-48d8-968e-c8db7140d6b3
+	sourceLineageTag: [dbo].[DimCustomer]
+
+	column customer_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 661ce4f0-644b-4412-884c-a09233eb7493
+		sourceLineageTag: customer_sk
+		summarizeBy: none
+		sourceColumn: customer_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 73802e1f-950c-41fc-8567-a1d1dd122ca1
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: 2bd8b0ef-5d20-4306-9958-2888ba0f036c
+		sourceLineageTag: first_name
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: f64b3b1c-e793-4f85-9823-59a573416148
+		sourceLineageTag: last_name
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_segment
+		dataType: string
+		lineageTag: 6acaac9c-2b4a-40d7-918a-dc5489914cef
+		sourceLineageTag: customer_segment
+		summarizeBy: none
+		sourceColumn: customer_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column kyc_status
+		dataType: string
+		lineageTag: 31d34371-fd4f-4c90-98d8-4dcef4de71d7
+		sourceLineageTag: kyc_status
+		summarizeBy: none
+		sourceColumn: kyc_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_status
+		dataType: string
+		lineageTag: a21283d3-e0f8-444b-b5c5-b0e4c0f518b7
+		sourceLineageTag: customer_status
+		summarizeBy: none
+		sourceColumn: customer_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_since_date
+		dataType: dateTime
+		lineageTag: 03806c3b-9206-4ef8-b91a-131790fe79de
+		sourceLineageTag: customer_since_date
+		summarizeBy: none
+		sourceColumn: customer_since_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_start_date
+		dataType: dateTime
+		lineageTag: f36c2891-2646-47ff-918a-eee8ddeb8f43
+		sourceLineageTag: effective_start_date
+		summarizeBy: none
+		sourceColumn: effective_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_end_date
+		dataType: dateTime
+		lineageTag: 1b5469e7-8d56-40d2-812f-ff277844b5e1
+		sourceLineageTag: effective_end_date
+		summarizeBy: none
+		sourceColumn: effective_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_flag
+		dataType: boolean
+		lineageTag: 3123b7b8-896b-4ac7-ac1d-214a1a11b0bf
+		sourceLineageTag: is_current_flag
+		summarizeBy: none
+		sourceColumn: is_current_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = entity
+		mode: directLake
+		source
+			entityName: DimCustomer
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

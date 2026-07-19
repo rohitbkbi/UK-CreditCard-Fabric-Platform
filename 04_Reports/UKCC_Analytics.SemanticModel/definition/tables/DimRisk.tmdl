@@ -1,0 +1,105 @@
+table DimRisk
+	lineageTag: 57561983-e2cf-462b-881d-aec7e2de7ed8
+	sourceLineageTag: [dbo].[DimRisk]
+
+	column risk_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: d45a157a-99a8-42a9-8a72-fbd7d12bab0d
+		sourceLineageTag: risk_sk
+		summarizeBy: none
+		sourceColumn: risk_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_profile_id
+		dataType: string
+		lineageTag: 411075b8-e484-45ed-b232-caccf74bc16f
+		sourceLineageTag: risk_profile_id
+		summarizeBy: none
+		sourceColumn: risk_profile_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: ad7e2977-278d-4d96-afcb-5de8c096f171
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column internal_credit_score
+		dataType: int64
+		formatString: 0
+		lineageTag: cce325dc-fb9a-468d-aad0-ebfaae067d39
+		sourceLineageTag: internal_credit_score
+		summarizeBy: sum
+		sourceColumn: internal_credit_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_grade
+		dataType: string
+		lineageTag: 3a0ab234-ee24-4d0f-934d-8ce8e9e4f1a5
+		sourceLineageTag: risk_grade
+		summarizeBy: none
+		sourceColumn: risk_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column probability_of_default
+		dataType: double
+		formatString: 0.00
+		lineageTag: 535f1b77-100a-4378-848a-ea940277bcd3
+		sourceLineageTag: probability_of_default
+		summarizeBy: sum
+		sourceColumn: probability_of_default
+
+		annotation SummarizationSetBy = Automatic
+
+	column vulnerable_customer_flag
+		dataType: boolean
+		lineageTag: e58f82d6-9e8a-4468-9ac2-7781d69c4a3d
+		sourceLineageTag: vulnerable_customer_flag
+		summarizeBy: none
+		sourceColumn: vulnerable_customer_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_start_date
+		dataType: dateTime
+		lineageTag: be5d6137-befe-4cb9-bebe-ad2d97f0b4cb
+		sourceLineageTag: effective_start_date
+		summarizeBy: none
+		sourceColumn: effective_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_end_date
+		dataType: dateTime
+		lineageTag: d2c098f5-7402-4805-8460-abca1f52e965
+		sourceLineageTag: effective_end_date
+		summarizeBy: none
+		sourceColumn: effective_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_flag
+		dataType: boolean
+		lineageTag: f576b9a7-23a6-4fc2-8cb4-2dda7fb710bf
+		sourceLineageTag: is_current_flag
+		summarizeBy: none
+		sourceColumn: is_current_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRisk = entity
+		mode: directLake
+		source
+			entityName: DimRisk
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

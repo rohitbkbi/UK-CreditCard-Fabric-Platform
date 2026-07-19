@@ -1,0 +1,111 @@
+table FactStatement
+	lineageTag: 7835082d-b631-4c39-b18b-798917163b3c
+	sourceLineageTag: [dbo].[FactStatement]
+
+	column statement_id
+		dataType: string
+		lineageTag: ba5802cb-2973-49d8-bdf9-e16689f3b489
+		sourceLineageTag: statement_id
+		summarizeBy: none
+		sourceColumn: statement_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 00befcaf-e396-42c8-9fb4-5740ac1e61b5
+		sourceLineageTag: account_sk
+		summarizeBy: none
+		sourceColumn: account_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 5452fcf1-313f-4533-9f56-68b378ef4711
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column opening_balance
+		dataType: double
+		formatString: 0.00
+		lineageTag: 59c4a600-83cb-4d2c-a36a-bc231b8aa988
+		sourceLineageTag: opening_balance
+		summarizeBy: sum
+		sourceColumn: opening_balance
+
+		annotation SummarizationSetBy = Automatic
+
+	column closing_balance
+		dataType: double
+		formatString: 0.00
+		lineageTag: 4a872060-1332-4ec9-aada-0f118bad6a32
+		sourceLineageTag: closing_balance
+		summarizeBy: sum
+		sourceColumn: closing_balance
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_purchases
+		dataType: double
+		formatString: 0.00
+		lineageTag: aeaa2607-4829-4d74-beb3-dbbbd5c39362
+		sourceLineageTag: total_purchases
+		summarizeBy: sum
+		sourceColumn: total_purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_payments
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5f9e5a1d-62fb-4b97-8c23-a21170bcf311
+		sourceLineageTag: total_payments
+		summarizeBy: sum
+		sourceColumn: total_payments
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_fees
+		dataType: double
+		formatString: 0.00
+		lineageTag: c3134129-2086-44b2-90bc-e980d5841485
+		sourceLineageTag: total_fees
+		summarizeBy: sum
+		sourceColumn: total_fees
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_interest
+		dataType: double
+		formatString: 0.00
+		lineageTag: 590f04aa-d0fd-45ab-baf1-2b95b5f8fda1
+		sourceLineageTag: total_interest
+		summarizeBy: sum
+		sourceColumn: total_interest
+
+		annotation SummarizationSetBy = Automatic
+
+	column minimum_payment_due
+		dataType: double
+		formatString: 0.00
+		lineageTag: 1ab4eff6-4f4d-4453-b42f-e75fc158e9d6
+		sourceLineageTag: minimum_payment_due
+		summarizeBy: sum
+		sourceColumn: minimum_payment_due
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactStatement = entity
+		mode: directLake
+		source
+			entityName: FactStatement
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

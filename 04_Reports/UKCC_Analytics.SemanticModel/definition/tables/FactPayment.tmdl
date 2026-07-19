@@ -1,0 +1,78 @@
+table FactPayment
+	lineageTag: a03f1d7f-d58d-4601-86a0-22317cb79629
+	sourceLineageTag: [dbo].[FactPayment]
+
+	column payment_id
+		dataType: string
+		lineageTag: 7995c9fc-d361-44ac-bc8a-625480c7a1ac
+		sourceLineageTag: payment_id
+		summarizeBy: none
+		sourceColumn: payment_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: fc0bd766-ebfd-424a-bb16-f92451da12aa
+		sourceLineageTag: account_sk
+		summarizeBy: none
+		sourceColumn: account_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fa457ce-69c7-4861-88c1-6f4d4af889d1
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_amount
+		dataType: double
+		formatString: 0.00
+		lineageTag: d64f277e-a25b-4e9b-882b-cfcbb1cbb7af
+		sourceLineageTag: payment_amount
+		summarizeBy: sum
+		sourceColumn: payment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_method
+		dataType: string
+		lineageTag: 1c412526-6d8d-4ced-9247-c9ebb6650c19
+		sourceLineageTag: payment_method
+		summarizeBy: none
+		sourceColumn: payment_method
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_status
+		dataType: string
+		lineageTag: 52562d79-a754-4f31-b117-5831c7da7e11
+		sourceLineageTag: payment_status
+		summarizeBy: none
+		sourceColumn: payment_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_autopay_flag
+		dataType: boolean
+		lineageTag: fc23391f-1582-4f87-9b90-4009977b8c00
+		sourceLineageTag: is_autopay_flag
+		summarizeBy: none
+		sourceColumn: is_autopay_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPayment = entity
+		mode: directLake
+		source
+			entityName: FactPayment
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

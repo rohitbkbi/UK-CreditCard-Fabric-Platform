@@ -1,0 +1,116 @@
+table FactTransaction
+	lineageTag: 2947623b-8d70-401b-8e1b-144a36fec5c4
+	sourceLineageTag: [dbo].[FactTransaction]
+
+	column transaction_id
+		dataType: string
+		lineageTag: befe8882-482c-4a7e-aa74-0bd932d48e6a
+		sourceLineageTag: transaction_id
+		summarizeBy: none
+		sourceColumn: transaction_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: ae5efde6-8295-4e16-8182-0645197fe61a
+		sourceLineageTag: account_sk
+		summarizeBy: none
+		sourceColumn: account_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 387fd9b9-7972-4735-b237-d67dfed8fe86
+		sourceLineageTag: card_sk
+		summarizeBy: none
+		sourceColumn: card_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column merchant_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: e5ec1c90-e07b-44dd-87f3-d0d2bb0099c4
+		sourceLineageTag: merchant_sk
+		summarizeBy: none
+		sourceColumn: merchant_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: ed8b8c69-46d6-4bd1-b9ef-d1ac87c8c82a
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_amount
+		dataType: double
+		formatString: 0.00
+		lineageTag: 24d50af8-5ec9-49fd-8ceb-cdf543f0b039
+		sourceLineageTag: transaction_amount
+		summarizeBy: sum
+		sourceColumn: transaction_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_currency
+		dataType: string
+		lineageTag: 0959d188-6d22-41fb-a77c-0263ab1336bc
+		sourceLineageTag: transaction_currency
+		summarizeBy: none
+		sourceColumn: transaction_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_type
+		dataType: string
+		lineageTag: dcd01c5e-7548-4222-9f99-fc9903e280d9
+		sourceLineageTag: transaction_type
+		summarizeBy: none
+		sourceColumn: transaction_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column transaction_status
+		dataType: string
+		lineageTag: bbed23fd-f74e-4ec5-90de-c8bcd2fc0edd
+		sourceLineageTag: transaction_status
+		summarizeBy: none
+		sourceColumn: transaction_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column channel
+		dataType: string
+		lineageTag: 9211e086-74c6-47f6-92e6-0ae1898be714
+		sourceLineageTag: channel
+		summarizeBy: none
+		sourceColumn: channel
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_international_flag
+		dataType: boolean
+		lineageTag: c6cacdb4-aa6a-46c9-880f-8799a6b2d9f1
+		sourceLineageTag: is_international_flag
+		summarizeBy: none
+		sourceColumn: is_international_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactTransaction = entity
+		mode: directLake
+		source
+			entityName: FactTransaction
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

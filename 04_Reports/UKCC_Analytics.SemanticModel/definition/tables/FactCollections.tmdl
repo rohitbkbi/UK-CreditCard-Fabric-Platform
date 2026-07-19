@@ -1,0 +1,69 @@
+table FactCollections
+	lineageTag: 91dfc733-c061-4f53-82e7-9296433f344a
+	sourceLineageTag: [dbo].[FactCollections]
+
+	column collections_id
+		dataType: string
+		lineageTag: c8ad4e48-b120-4dc2-ba02-07035e7c26bd
+		sourceLineageTag: collections_id
+		summarizeBy: none
+		sourceColumn: collections_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 32453a94-66ef-4962-a290-bd6a02385f9d
+		sourceLineageTag: account_sk
+		summarizeBy: none
+		sourceColumn: account_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column collections_stage
+		dataType: string
+		lineageTag: 42768b30-f891-490f-83fd-b40738b7366d
+		sourceLineageTag: collections_stage
+		summarizeBy: none
+		sourceColumn: collections_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column outstanding_balance
+		dataType: double
+		formatString: 0.00
+		lineageTag: f7e825a1-1eef-4df1-8ae5-e90ef0addb5d
+		sourceLineageTag: outstanding_balance
+		summarizeBy: sum
+		sourceColumn: outstanding_balance
+
+		annotation SummarizationSetBy = Automatic
+
+	column promise_to_pay_amount
+		dataType: double
+		formatString: 0.00
+		lineageTag: 20a2c052-f205-478b-964f-fd424ebc894b
+		sourceLineageTag: promise_to_pay_amount
+		summarizeBy: sum
+		sourceColumn: promise_to_pay_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column collections_status
+		dataType: string
+		lineageTag: 8a67d472-2e3b-4d60-86d5-29f8189c4b60
+		sourceLineageTag: collections_status
+		summarizeBy: none
+		sourceColumn: collections_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactCollections = entity
+		mode: directLake
+		source
+			entityName: FactCollections
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

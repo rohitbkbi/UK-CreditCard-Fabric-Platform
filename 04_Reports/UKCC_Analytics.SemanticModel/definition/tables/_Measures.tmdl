@@ -1,0 +1,117 @@
+table _Measures
+	lineageTag: 80109a0d-1e02-48ae-ab12-01f64b06476c
+
+	measure 'Total Transaction Amount' =
+			SUM( FactTransaction[transaction_amount] )
+		formatString: 0.00
+		displayFolder: Transactions
+		lineageTag: dcd8844f-8760-4378-b36f-106109abc958
+
+	measure 'Total Transactions' =
+			COUNTROWS( FactTransaction )
+		formatString: 0
+		displayFolder: Transactions
+		lineageTag: e0b67da8-bab5-46f2-8d67-a5e782b00c2a
+
+	measure 'Total Customers' =
+			DISTINCTCOUNT( DimCustomer[customer_id] )
+		formatString: 0
+		displayFolder: Customers
+		lineageTag: 6ded29b1-4b84-438b-b611-4dfab1c35a81
+
+	measure 'Active Accounts' =
+			CALCULATE( DISTINCTCOUNT( DimAccount[account_id] ), DimAccount[account_status] = "ACTIVE" )
+		formatString: 0
+		displayFolder: Accounts
+		lineageTag: 69505a06-935d-4b40-a3a0-96e239eedd80
+
+	measure 'Total Payments' =
+			SUM( FactPayment[payment_amount] )
+		formatString: 0.00
+		displayFolder: Payments
+		lineageTag: 71192d28-66f3-49d4-aa15-0713ab8274de
+
+	measure 'Total Fee Revenue' =
+			SUM( FactRevenue[total_fee_revenue] )
+		formatString: 0.00
+		displayFolder: Revenue
+		lineageTag: 43024f8f-6757-47a3-baf1-16c7ac5a707a
+
+	measure 'Total Interest Revenue' =
+			SUM( FactRevenue[total_interest_revenue] )
+		formatString: 0.00
+		displayFolder: Revenue
+		lineageTag: 8ddf32a6-1945-4294-9749-41d5823bbc4c
+
+	measure 'Total Revenue' =
+			SUM( FactRevenue[total_revenue] )
+		formatString: 0.00
+		displayFolder: Revenue
+		lineageTag: 6a00a423-3363-406e-b771-50b31dcf52fe
+
+	measure 'Total Disputed Fraud Amount' =
+			SUM( FactFraud[disputed_amount] )
+		formatString: 0.00
+		displayFolder: Fraud
+		lineageTag: 1b4f4aef-3eb4-4e91-9c00-10242d8da0eb
+
+	measure 'Fraud Case Count' =
+			COUNTROWS( FactFraud )
+		formatString: 0
+		displayFolder: Fraud
+		lineageTag: b3ce8da2-8439-4f90-8216-d834bc6a7cc1
+
+	measure 'Fraud Loss Rate' =
+			DIVIDE( [Total Disputed Fraud Amount] - SUM( FactFraud[recovery_amount] ), [Total Transaction Amount], 0 )
+		formatString: 0.00%
+		displayFolder: Fraud
+		lineageTag: 7633ff7f-277e-481e-82d9-0ade69407ba6
+
+	measure 'Total Outstanding Collections' =
+			SUM( FactCollections[outstanding_balance] )
+		formatString: 0.00
+		displayFolder: Collections
+		lineageTag: ed09370e-6cc0-4726-a7c4-803728596440
+
+	measure 'International Transaction %' =
+			DIVIDE( CALCULATE( COUNTROWS( FactTransaction ), FactTransaction[is_international_flag] = TRUE ), [Total Transactions], 0 )
+		formatString: 0.00%
+		displayFolder: Transactions
+		lineageTag: 2e0496cc-b885-491f-9663-f84f19854fe2
+
+	measure 'Average Transaction Value' =
+			AVERAGE( FactTransaction[transaction_amount] )
+		formatString: 0.00
+		displayFolder: Transactions
+		lineageTag: 8dba45f7-b963-4185-a5df-9c0d662394d8
+
+	measure 'Transactions MTD' =
+			CALCULATE( [Total Transactions], DATESMTD( DimDate[calendar_date] ) )
+		formatString: 0
+		displayFolder: Time Intelligence
+		lineageTag: 4a25624d-acb5-4562-9a32-27c66c8e908b
+
+	measure 'Transactions YTD' =
+			CALCULATE( [Total Transactions], DATESYTD( DimDate[calendar_date] ) )
+		formatString: 0
+		displayFolder: Time Intelligence
+		lineageTag: 37aff92f-0520-49d7-bc1c-0381e82ae8b9
+
+	measure 'Revenue Prior Month' =
+			CALCULATE( [Total Revenue], PREVIOUSMONTH( DimDate[calendar_date] ) )
+		formatString: 0.00
+		displayFolder: Time Intelligence
+		lineageTag: 139eb12d-e1e1-40af-8436-c83fce343e58
+
+	column Column
+		formatString: 0
+		lineageTag: 55068eef-e3a8-448e-b061-518711a24eb4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())

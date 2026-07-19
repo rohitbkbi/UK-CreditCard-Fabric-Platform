@@ -1,0 +1,397 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "Lookup",
+        "typeProperties": {
+          "source": {
+            "type": "LakehouseTableSource",
+            "sqlReaderQuery": "SELECT table_name, source_system, layer_role, primary_key, scd_type\nFROM dbo.meta_table_config\nWHERE active_flag = true\nORDER BY layer_role, table_name;",
+            "partitionOption": "None"
+          },
+          "datasetSettings": {
+            "type": "LakehouseTable",
+            "typeProperties": {
+              "schema": "dbo",
+              "table": "meta_table_config"
+            },
+            "schema": [],
+            "connectionSettings": {
+              "name": "LH_UKCC_Platform",
+              "properties": {
+                "type": "Lakehouse",
+                "typeProperties": {
+                  "artifactId": "8fb7d13b-34f4-4972-8735-c477be902ff1",
+                  "workspaceId": "00000000-0000-0000-0000-000000000000",
+                  "rootFolder": "Tables"
+                },
+                "externalReferences": {
+                  "connection": "00000000-0000-0000-0000-000000000000"
+                },
+                "annotations": []
+              }
+            },
+            "annotations": []
+          },
+          "firstRowOnly": false
+        },
+        "policy": {
+          "timeout": "0.06:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "LKP_Get_Active_Tables",
+        "dependsOn": []
+      },
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "isSequential": false,
+          "batchCount": 8,
+          "items": {
+            "value": "@activity('LKP_Get_Active_Tables').output.value",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "a1a1a1a1-0000-4000-8000-000000000003",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source_system": {
+                    "value": {
+                      "value": "@item().source_system",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "ingestion_date": {
+                    "value": {
+                      "value": "@pipeline().parameters.ingestion_date",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "batch_id": {
+                    "value": {
+                      "value": "@pipeline().parameters.batch_id",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "pipeline_name": {
+                    "value": {
+                      "value": "@pipeline().Pipeline",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.06:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "NB_Landing_Ingestion",
+              "dependsOn": []
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "a1a1a1a1-0000-4000-8000-000000000004",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "source_system": {
+                    "value": {
+                      "value": "@item().source_system",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "ingestion_date": {
+                    "value": {
+                      "value": "@pipeline().parameters.ingestion_date",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "batch_id": {
+                    "value": {
+                      "value": "@pipeline().parameters.batch_id",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "pipeline_name": {
+                    "value": {
+                      "value": "@pipeline().Pipeline",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.06:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "NB_Bronze_Load",
+              "dependsOn": [
+                {
+                  "activity": "NB_Landing_Ingestion",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "TridentNotebook",
+              "typeProperties": {
+                "notebookId": "a1a1a1a1-0000-4000-8000-000000000005",
+                "workspaceId": "00000000-0000-0000-0000-000000000000",
+                "parameters": {
+                  "table_name": {
+                    "value": {
+                      "value": "@item().table_name",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "batch_id": {
+                    "value": {
+                      "value": "@pipeline().parameters.batch_id",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  },
+                  "pipeline_name": {
+                    "value": {
+                      "value": "@pipeline().Pipeline",
+                      "type": "Expression"
+                    },
+                    "type": "string"
+                  }
+                }
+              },
+              "policy": {
+                "timeout": "0.06:00:00",
+                "retry": 2,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "NB_Silver_Transform",
+              "dependsOn": [
+                {
+                  "activity": "NB_Bronze_Load",
+                  "dependencyConditions": [
+                    "Succeeded"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "name": "FE_Process_Tables_Landing_Bronze_Silver",
+        "dependsOn": [
+          {
+            "activity": "LKP_Get_Active_Tables",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a1a1a1a1-0000-4000-8000-000000000006",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": {
+                "value": "@pipeline().parameters.batch_id",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "pipeline_name": {
+              "value": {
+                "value": "@pipeline().Pipeline",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.06:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_Gold_Load",
+        "dependsOn": [
+          {
+            "activity": "FE_Process_Tables_Landing_Bronze_Silver",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "a1a1a1a1-0000-4000-8000-000000000007",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "batch_id": {
+              "value": {
+                "value": "@pipeline().parameters.batch_id",
+                "type": "Expression"
+              },
+              "type": "string"
+            },
+            "pipeline_name": {
+              "value": {
+                "value": "@pipeline().Pipeline",
+                "type": "Expression"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.06:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "NB_Data_Quality_Validation",
+        "dependsOn": [
+          {
+            "activity": "NB_Gold_Load",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "WebActivity",
+        "typeProperties": {
+          "url": "https://api.powerbi.com/v1.0/myorg/groups/@{pipeline().globalParameters.WorkspaceId}/datasets/@{pipeline().globalParameters.SemanticModelId}/refreshes",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "authentication": {
+            "type": "MSI",
+            "resource": "https://analysis.windows.net/powerbi/api"
+          },
+          "body": {
+            "notifyOption": "MailOnFailure"
+          }
+        },
+        "policy": {
+          "timeout": "0.02:00:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "WEB_Trigger_PowerBI_SemanticModel_Refresh",
+        "dependsOn": [
+          {
+            "activity": "NB_Data_Quality_Validation",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "WebActivity",
+        "typeProperties": {
+          "url": "@pipeline().globalParameters.OpsAlertWebhookUrl",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "pipeline": "@pipeline().Pipeline",
+            "runId": "@pipeline().RunId",
+            "message": "PL_UKCC_ETL_PIPELINE FAILED - see dbo.pipeline_execution_log and dbo.dq_validation_summary"
+          }
+        },
+        "policy": {
+          "timeout": "0.01:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "WEB_Send_Failure_Alert",
+        "dependsOn": [
+          {
+            "activity": "FE_Process_Tables_Landing_Bronze_Silver",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "NB_Gold_Load",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          },
+          {
+            "activity": "NB_Data_Quality_Validation",
+            "dependencyConditions": [
+              "Failed"
+            ]
+          }
+        ]
+      }
+    ],
+    "parameters": {
+      "ingestion_date": {
+        "type": "string",
+        "defaultValue": "2026-07-18"
+      },
+      "batch_id": {
+        "type": "string",
+        "defaultValue": "20260718_001"
+      }
+    },
+    "variables": {},
+    "annotations": []
+  }
+}

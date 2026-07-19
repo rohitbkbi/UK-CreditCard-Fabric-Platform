@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - LH_UKCC_Platform"]
+
+ref table DimDate
+ref table DimCustomer
+ref table DimAccount
+ref table DimCard
+ref table DimProduct
+ref table DimMerchant
+ref table DimBranch
+ref table DimRisk
+ref table FactTransaction
+ref table FactPayment
+ref table FactStatement
+ref table FactFraud
+ref table FactCollections
+ref table FactRevenue
+ref table _Measures

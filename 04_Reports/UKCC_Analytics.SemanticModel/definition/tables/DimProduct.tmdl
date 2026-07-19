@@ -1,0 +1,105 @@
+table DimProduct
+	lineageTag: 759e0cff-00b9-4b8d-a8fc-8f5386b20ec0
+	sourceLineageTag: [dbo].[DimProduct]
+
+	column product_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: eb28bee9-9b8d-4f91-9231-b6e1e20a6431
+		sourceLineageTag: product_sk
+		summarizeBy: none
+		sourceColumn: product_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 4b20ab90-b64f-4d77-9cf8-20b3b1a38c2d
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: 22974abf-ce1c-4a63-b8bf-0d246ec3cd2b
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category
+		dataType: string
+		lineageTag: c8808c80-73f9-408a-a0f7-b9c103101849
+		sourceLineageTag: product_category
+		summarizeBy: none
+		sourceColumn: product_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column card_network
+		dataType: string
+		lineageTag: bf31d5fc-422e-4128-b3f5-9b9304571c43
+		sourceLineageTag: card_network
+		summarizeBy: none
+		sourceColumn: card_network
+
+		annotation SummarizationSetBy = Automatic
+
+	column annual_fee
+		dataType: double
+		formatString: 0.00
+		lineageTag: 4ed2df12-939f-4734-b0e0-cf727034d7fb
+		sourceLineageTag: annual_fee
+		summarizeBy: sum
+		sourceColumn: annual_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_apr
+		dataType: double
+		formatString: 0.00
+		lineageTag: 7fb2e932-2a78-4dec-99ef-98a49ef2fcab
+		sourceLineageTag: purchase_apr
+		summarizeBy: sum
+		sourceColumn: purchase_apr
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_start_date
+		dataType: dateTime
+		lineageTag: e21616c2-fc0a-406b-9267-2a0e7effe6c2
+		sourceLineageTag: effective_start_date
+		summarizeBy: none
+		sourceColumn: effective_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_end_date
+		dataType: dateTime
+		lineageTag: 5e0140f5-539b-4269-9d29-46a2fdc6af51
+		sourceLineageTag: effective_end_date
+		summarizeBy: none
+		sourceColumn: effective_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_flag
+		dataType: boolean
+		lineageTag: fc5010e3-8f14-440b-a70d-508c1e407aa2
+		sourceLineageTag: is_current_flag
+		summarizeBy: none
+		sourceColumn: is_current_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = entity
+		mode: directLake
+		source
+			entityName: DimProduct
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

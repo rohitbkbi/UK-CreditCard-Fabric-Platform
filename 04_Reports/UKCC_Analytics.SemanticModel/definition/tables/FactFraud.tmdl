@@ -1,0 +1,79 @@
+table FactFraud
+	lineageTag: 6962fb35-ca56-46e3-b506-e732f2d9a814
+	sourceLineageTag: [dbo].[FactFraud]
+
+	column fraud_case_id
+		dataType: string
+		lineageTag: f3e7a62f-0a51-4e81-846e-a9fa785b4baa
+		sourceLineageTag: fraud_case_id
+		summarizeBy: none
+		sourceColumn: fraud_case_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 5aff4420-f867-4cc8-973a-0828c32f2dad
+		sourceLineageTag: customer_sk
+		summarizeBy: none
+		sourceColumn: customer_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 095cbde0-1973-4c6a-add4-9df6961ede43
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column fraud_type
+		dataType: string
+		lineageTag: 39de4859-d997-4d5a-906e-daa63f845a28
+		sourceLineageTag: fraud_type
+		summarizeBy: none
+		sourceColumn: fraud_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column disputed_amount
+		dataType: double
+		formatString: 0.00
+		lineageTag: 39373d3a-55e4-4320-9412-83191a14e1fa
+		sourceLineageTag: disputed_amount
+		summarizeBy: sum
+		sourceColumn: disputed_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column recovery_amount
+		dataType: double
+		formatString: 0.00
+		lineageTag: 581d57af-5f61-4892-8731-51df62a747c2
+		sourceLineageTag: recovery_amount
+		summarizeBy: sum
+		sourceColumn: recovery_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column case_status
+		dataType: string
+		lineageTag: 9f4a58fd-8e67-46f6-92ad-27181920fa6d
+		sourceLineageTag: case_status
+		summarizeBy: none
+		sourceColumn: case_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactFraud = entity
+		mode: directLake
+		source
+			entityName: FactFraud
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,94 @@
+table DimBranch
+	lineageTag: 98069786-f74e-45c4-a88a-7026b3cd194f
+	sourceLineageTag: [dbo].[DimBranch]
+
+	column branch_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: c096ed61-6387-4781-a9ba-2e6a20d991da
+		sourceLineageTag: branch_sk
+		summarizeBy: none
+		sourceColumn: branch_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_id
+		dataType: string
+		lineageTag: 269e34e0-0c7a-4b06-a452-3b8a7e52cf1a
+		sourceLineageTag: branch_id
+		summarizeBy: none
+		sourceColumn: branch_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_name
+		dataType: string
+		lineageTag: 3accf7a3-0c7e-4f30-889b-5245e974b8f3
+		sourceLineageTag: branch_name
+		summarizeBy: none
+		sourceColumn: branch_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_type
+		dataType: string
+		lineageTag: 465d47f2-cb8b-40b6-9ce9-2b4c5a7e4c1e
+		sourceLineageTag: branch_type
+		summarizeBy: none
+		sourceColumn: branch_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: b5fe0645-f300-4380-87fc-a4b0b2663988
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column branch_status
+		dataType: string
+		lineageTag: 3b58db80-21ee-4eeb-9717-c70bcc4257d0
+		sourceLineageTag: branch_status
+		summarizeBy: none
+		sourceColumn: branch_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_start_date
+		dataType: dateTime
+		lineageTag: 27f491b3-a233-43fb-9461-b8786dfc79ba
+		sourceLineageTag: effective_start_date
+		summarizeBy: none
+		sourceColumn: effective_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column effective_end_date
+		dataType: dateTime
+		lineageTag: 02d4f4d1-27bf-4dba-ba08-3315f73a911e
+		sourceLineageTag: effective_end_date
+		summarizeBy: none
+		sourceColumn: effective_end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_current_flag
+		dataType: boolean
+		lineageTag: fdbc323a-60d6-4512-9e3e-92dcaa677a8f
+		sourceLineageTag: is_current_flag
+		summarizeBy: none
+		sourceColumn: is_current_flag
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimBranch = entity
+		mode: directLake
+		source
+			entityName: DimBranch
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table

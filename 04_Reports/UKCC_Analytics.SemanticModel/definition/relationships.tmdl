@@ -1,0 +1,55 @@
+relationship 06005b63-3446-4bb1-baba-6c3fef93eec2
+	fromColumn: DimDate.date_sk
+	toColumn: FactTransaction.date_sk
+
+relationship 397960c8-b8cb-4b94-b36c-fc5d30550a8d
+	fromColumn: DimDate.date_sk
+	toColumn: FactPayment.date_sk
+
+relationship c7050819-60a4-411c-85f3-233bc77a5de0
+	fromColumn: DimDate.date_sk
+	toColumn: FactStatement.date_sk
+
+relationship 37fd742b-d8b7-4fff-bac9-144dd789386e
+	fromColumn: DimDate.date_sk
+	toColumn: FactFraud.date_sk
+
+relationship 5be401cc-e838-49d8-b0bf-44eb287623b1
+	fromColumn: DimAccount.account_sk
+	toColumn: FactTransaction.account_sk
+
+relationship fb9b66a5-b34d-4f73-b458-d56cdad9708b
+	fromColumn: DimCard.card_sk
+	toColumn: FactTransaction.card_sk
+
+relationship 14f3eaaa-a70e-4e1a-b506-a90ba2453f9a
+	fromColumn: DimMerchant.merchant_sk
+	toColumn: FactTransaction.merchant_sk
+
+relationship 08dece91-0f7f-47d1-bf66-c54b2cebf563
+	fromColumn: DimAccount.account_sk
+	toColumn: FactPayment.account_sk
+
+relationship 0efea56e-f795-43ff-882b-9de6090631f7
+	fromColumn: DimAccount.account_sk
+	toColumn: FactStatement.account_sk
+
+relationship 21e75644-33ae-425d-9344-4673859a5b54
+	fromColumn: DimCustomer.customer_sk
+	toColumn: FactFraud.customer_sk
+
+relationship 0b3ebc6c-2f2c-4c58-9178-aaa13e1b0954
+	fromColumn: DimAccount.account_sk
+	toColumn: FactCollections.account_sk
+
+relationship c4fbbdc2-bf05-44ff-b22d-9e7b3ccec6b0
+	fromColumn: DimAccount.account_sk
+	toColumn: FactRevenue.account_sk
+
+relationship ebd75dc0-872c-4692-a52d-8ecc9a7ab80c
+	fromColumn: DimProduct.product_id
+	toColumn: DimAccount.product_id
+
+relationship ff46d294-0060-4e8c-aa6c-8f5d07452cd2
+	fromColumn: DimCustomer.customer_id
+	toColumn: DimAccount.customer_id

@@ -1,0 +1,562 @@
+[
+  {
+    "table_name": "currency",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "DIM",
+    "primary_key": "currency_code",
+    "scd_type": 1,
+    "natural_keys": [
+      "currency_code"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_currency",
+    "bronze_table": "bronze_currency",
+    "active_flag": true
+  },
+  {
+    "table_name": "geography",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "DIM",
+    "primary_key": "geography_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "geography_id"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_geography",
+    "bronze_table": "bronze_geography",
+    "active_flag": true
+  },
+  {
+    "table_name": "branch",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "DIM",
+    "primary_key": "branch_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "branch_id"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_branch",
+    "bronze_table": "bronze_branch",
+    "active_flag": true
+  },
+  {
+    "table_name": "merchant_category",
+    "source_system": "CARD_NETWORK_API",
+    "layer_role": "DIM",
+    "primary_key": "mcc_code",
+    "scd_type": 1,
+    "natural_keys": [
+      "mcc_code"
+    ],
+    "bronze_path": "Files/bronze/CARD_NETWORK_API",
+    "silver_table": "silver_merchant_category",
+    "bronze_table": "bronze_merchant_category",
+    "active_flag": true
+  },
+  {
+    "table_name": "reward_program",
+    "source_system": "MARKETING_PG",
+    "layer_role": "DIM",
+    "primary_key": "reward_program_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "reward_program_id"
+    ],
+    "bronze_path": "Files/bronze/MARKETING_PG",
+    "silver_table": "silver_reward_program",
+    "bronze_table": "bronze_reward_program",
+    "active_flag": true
+  },
+  {
+    "table_name": "card_product",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "DIM",
+    "primary_key": "product_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "product_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_card_product",
+    "bronze_table": "bronze_card_product",
+    "active_flag": true
+  },
+  {
+    "table_name": "campaign",
+    "source_system": "MARKETING_PG",
+    "layer_role": "DIM",
+    "primary_key": "campaign_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "campaign_id"
+    ],
+    "bronze_path": "Files/bronze/MARKETING_PG",
+    "silver_table": "silver_campaign",
+    "bronze_table": "bronze_campaign",
+    "active_flag": true
+  },
+  {
+    "table_name": "offer",
+    "source_system": "MARKETING_PG",
+    "layer_role": "DIM",
+    "primary_key": "offer_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "offer_id"
+    ],
+    "bronze_path": "Files/bronze/MARKETING_PG",
+    "silver_table": "silver_offer",
+    "bronze_table": "bronze_offer",
+    "active_flag": true
+  },
+  {
+    "table_name": "exchange_rate",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "FACT",
+    "primary_key": "exchange_rate_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "exchange_rate_id"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_exchange_rate",
+    "bronze_table": "bronze_exchange_rate",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer",
+    "source_system": "ORACLE_CORE",
+    "layer_role": "DIM",
+    "primary_key": "customer_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "customer_id"
+    ],
+    "bronze_path": "Files/bronze/ORACLE_CORE",
+    "silver_table": "silver_customer",
+    "bronze_table": "bronze_customer",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_address",
+    "source_system": "ORACLE_CORE",
+    "layer_role": "DIM",
+    "primary_key": "address_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "address_id"
+    ],
+    "bronze_path": "Files/bronze/ORACLE_CORE",
+    "silver_table": "silver_customer_address",
+    "bronze_table": "bronze_customer_address",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_employment",
+    "source_system": "ORACLE_CORE",
+    "layer_role": "DIM",
+    "primary_key": "employment_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "employment_id"
+    ],
+    "bronze_path": "Files/bronze/ORACLE_CORE",
+    "silver_table": "silver_customer_employment",
+    "bronze_table": "bronze_customer_employment",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_income",
+    "source_system": "ORACLE_CORE",
+    "layer_role": "DIM",
+    "primary_key": "income_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "income_id"
+    ],
+    "bronze_path": "Files/bronze/ORACLE_CORE",
+    "silver_table": "silver_customer_income",
+    "bronze_table": "bronze_customer_income",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_risk_profile",
+    "source_system": "ORACLE_CORE",
+    "layer_role": "DIM",
+    "primary_key": "risk_profile_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "risk_profile_id"
+    ],
+    "bronze_path": "Files/bronze/ORACLE_CORE",
+    "silver_table": "silver_customer_risk_profile",
+    "bronze_table": "bronze_customer_risk_profile",
+    "active_flag": true
+  },
+  {
+    "table_name": "account",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "DIM",
+    "primary_key": "account_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "account_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_account",
+    "bronze_table": "bronze_account",
+    "active_flag": true
+  },
+  {
+    "table_name": "credit_card",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "DIM",
+    "primary_key": "card_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "card_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_credit_card",
+    "bronze_table": "bronze_credit_card",
+    "active_flag": true
+  },
+  {
+    "table_name": "credit_limit",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "DIM",
+    "primary_key": "credit_limit_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "credit_limit_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_credit_limit",
+    "bronze_table": "bronze_credit_limit",
+    "active_flag": true
+  },
+  {
+    "table_name": "merchant",
+    "source_system": "CARD_NETWORK_API",
+    "layer_role": "DIM",
+    "primary_key": "merchant_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "merchant_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_NETWORK_API",
+    "silver_table": "silver_merchant",
+    "bronze_table": "bronze_merchant",
+    "active_flag": true
+  },
+  {
+    "table_name": "transaction",
+    "source_system": "CARD_NETWORK_API",
+    "layer_role": "FACT",
+    "primary_key": "transaction_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "transaction_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_NETWORK_API",
+    "silver_table": "silver_transaction",
+    "bronze_table": "bronze_transaction",
+    "active_flag": true
+  },
+  {
+    "table_name": "payment",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "payment_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "payment_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_payment",
+    "bronze_table": "bronze_payment",
+    "active_flag": true
+  },
+  {
+    "table_name": "statement",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "statement_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "statement_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_statement",
+    "bronze_table": "bronze_statement",
+    "active_flag": true
+  },
+  {
+    "table_name": "interest_charge",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "interest_charge_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "interest_charge_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_interest_charge",
+    "bronze_table": "bronze_interest_charge",
+    "active_flag": true
+  },
+  {
+    "table_name": "fee",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "fee_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "fee_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_fee",
+    "bronze_table": "bronze_fee",
+    "active_flag": true
+  },
+  {
+    "table_name": "balance_transfer",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "balance_transfer_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "balance_transfer_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_balance_transfer",
+    "bronze_table": "bronze_balance_transfer",
+    "active_flag": true
+  },
+  {
+    "table_name": "cash_withdrawal",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "cash_withdrawal_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "cash_withdrawal_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_cash_withdrawal",
+    "bronze_table": "bronze_cash_withdrawal",
+    "active_flag": true
+  },
+  {
+    "table_name": "emi_plan",
+    "source_system": "CARD_MGMT_SQL",
+    "layer_role": "FACT",
+    "primary_key": "emi_plan_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "emi_plan_id"
+    ],
+    "bronze_path": "Files/bronze/CARD_MGMT_SQL",
+    "silver_table": "silver_emi_plan",
+    "bronze_table": "bronze_emi_plan",
+    "active_flag": true
+  },
+  {
+    "table_name": "loyalty_point",
+    "source_system": "MARKETING_PG",
+    "layer_role": "FACT",
+    "primary_key": "loyalty_point_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "loyalty_point_id"
+    ],
+    "bronze_path": "Files/bronze/MARKETING_PG",
+    "silver_table": "silver_loyalty_point",
+    "bronze_table": "bronze_loyalty_point",
+    "active_flag": true
+  },
+  {
+    "table_name": "fraud_alert",
+    "source_system": "FRAUD_ENGINE_API",
+    "layer_role": "FACT",
+    "primary_key": "fraud_alert_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "fraud_alert_id"
+    ],
+    "bronze_path": "Files/bronze/FRAUD_ENGINE_API",
+    "silver_table": "silver_fraud_alert",
+    "bronze_table": "bronze_fraud_alert",
+    "active_flag": true
+  },
+  {
+    "table_name": "fraud_case",
+    "source_system": "FRAUD_ENGINE_API",
+    "layer_role": "FACT",
+    "primary_key": "fraud_case_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "fraud_case_id"
+    ],
+    "bronze_path": "Files/bronze/FRAUD_ENGINE_API",
+    "silver_table": "silver_fraud_case",
+    "bronze_table": "bronze_fraud_case",
+    "active_flag": true
+  },
+  {
+    "table_name": "chargeback",
+    "source_system": "FRAUD_ENGINE_API",
+    "layer_role": "FACT",
+    "primary_key": "chargeback_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "chargeback_id"
+    ],
+    "bronze_path": "Files/bronze/FRAUD_ENGINE_API",
+    "silver_table": "silver_chargeback",
+    "bronze_table": "bronze_chargeback",
+    "active_flag": true
+  },
+  {
+    "table_name": "credit_bureau_data",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "FACT",
+    "primary_key": "bureau_record_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "bureau_record_id"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_credit_bureau_data",
+    "bronze_table": "bronze_credit_bureau_data",
+    "active_flag": true
+  },
+  {
+    "table_name": "delinquency",
+    "source_system": "COLLECTIONS_SQL",
+    "layer_role": "FACT",
+    "primary_key": "delinquency_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "delinquency_id"
+    ],
+    "bronze_path": "Files/bronze/COLLECTIONS_SQL",
+    "silver_table": "silver_delinquency",
+    "bronze_table": "bronze_delinquency",
+    "active_flag": true
+  },
+  {
+    "table_name": "collections",
+    "source_system": "COLLECTIONS_SQL",
+    "layer_role": "FACT",
+    "primary_key": "collections_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "collections_id"
+    ],
+    "bronze_path": "Files/bronze/COLLECTIONS_SQL",
+    "silver_table": "silver_collections",
+    "bronze_table": "bronze_collections",
+    "active_flag": true
+  },
+  {
+    "table_name": "write_off",
+    "source_system": "COLLECTIONS_SQL",
+    "layer_role": "FACT",
+    "primary_key": "write_off_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "write_off_id"
+    ],
+    "bronze_path": "Files/bronze/COLLECTIONS_SQL",
+    "silver_table": "silver_write_off",
+    "bronze_table": "bronze_write_off",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_complaint",
+    "source_system": "CRM_SQL",
+    "layer_role": "FACT",
+    "primary_key": "complaint_id",
+    "scd_type": 2,
+    "natural_keys": [
+      "complaint_id"
+    ],
+    "bronze_path": "Files/bronze/CRM_SQL",
+    "silver_table": "silver_customer_complaint",
+    "bronze_table": "bronze_customer_complaint",
+    "active_flag": true
+  },
+  {
+    "table_name": "customer_service_call",
+    "source_system": "CRM_SQL",
+    "layer_role": "FACT",
+    "primary_key": "call_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "call_id"
+    ],
+    "bronze_path": "Files/bronze/CRM_SQL",
+    "silver_table": "silver_customer_service_call",
+    "bronze_table": "bronze_customer_service_call",
+    "active_flag": true
+  },
+  {
+    "table_name": "digital_banking_activity",
+    "source_system": "DIGITAL_PG",
+    "layer_role": "FACT",
+    "primary_key": "activity_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "activity_id"
+    ],
+    "bronze_path": "Files/bronze/DIGITAL_PG",
+    "silver_table": "silver_digital_banking_activity",
+    "bronze_table": "bronze_digital_banking_activity",
+    "active_flag": true
+  },
+  {
+    "table_name": "mobile_app_activity",
+    "source_system": "DIGITAL_PG",
+    "layer_role": "FACT",
+    "primary_key": "mobile_activity_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "mobile_activity_id"
+    ],
+    "bronze_path": "Files/bronze/DIGITAL_PG",
+    "silver_table": "silver_mobile_app_activity",
+    "bronze_table": "bronze_mobile_app_activity",
+    "active_flag": true
+  },
+  {
+    "table_name": "web_banking_activity",
+    "source_system": "DIGITAL_PG",
+    "layer_role": "FACT",
+    "primary_key": "web_activity_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "web_activity_id"
+    ],
+    "bronze_path": "Files/bronze/DIGITAL_PG",
+    "silver_table": "silver_web_banking_activity",
+    "bronze_table": "bronze_web_banking_activity",
+    "active_flag": true
+  },
+  {
+    "table_name": "regulatory_reporting",
+    "source_system": "REFERENCE_SFTP",
+    "layer_role": "FACT",
+    "primary_key": "report_id",
+    "scd_type": 1,
+    "natural_keys": [
+      "report_id"
+    ],
+    "bronze_path": "Files/bronze/REFERENCE_SFTP",
+    "silver_table": "silver_regulatory_reporting",
+    "bronze_table": "bronze_regulatory_reporting",
+    "active_flag": true
+  }
+]

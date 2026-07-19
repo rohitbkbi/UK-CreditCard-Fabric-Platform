@@ -1,0 +1,127 @@
+table DimDate
+	lineageTag: 92b89c06-d7a7-436d-90cf-2af9d25f7e54
+	sourceLineageTag: [dbo].[DimDate]
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: bfe340c6-1fbe-438b-a783-49bd22771d50
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column calendar_date
+		dataType: dateTime
+		lineageTag: a3e27fda-8676-4b8e-94c1-de0bb73a08bf
+		sourceLineageTag: calendar_date
+		summarizeBy: none
+		sourceColumn: calendar_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: caeead77-a4f1-4f13-84c6-f1919f6fa272
+		sourceLineageTag: year
+		summarizeBy: none
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: 7467fe57-e963-4248-ada1-66d24a786afc
+		sourceLineageTag: quarter
+		summarizeBy: none
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: c7df288a-222c-4c36-ac32-b5008c882cdb
+		sourceLineageTag: month
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: 14c046e9-00e6-4335-a9ac-7f395ec953c4
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_month
+		dataType: int64
+		formatString: 0
+		lineageTag: cdb52754-642e-48b2-915f-77f8b32f7bdf
+		sourceLineageTag: day_of_month
+		summarizeBy: none
+		sourceColumn: day_of_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: 8621798f-ab1d-4dac-a7b4-938a348dcd54
+		sourceLineageTag: day_of_week
+		summarizeBy: none
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 069d14a3-7f7b-49c5-8366-053c3d161750
+		sourceLineageTag: day_name
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column week_of_year
+		dataType: int64
+		formatString: 0
+		lineageTag: bc979689-bed1-4453-a6b7-22f122fe89a8
+		sourceLineageTag: week_of_year
+		summarizeBy: none
+		sourceColumn: week_of_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		lineageTag: e2c487ca-b47b-4971-92fb-dac08f272b83
+		sourceLineageTag: is_weekend
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column fca_reporting_quarter
+		dataType: string
+		lineageTag: dde3f9dc-4e32-4897-9686-e8bfada1b7d1
+		sourceLineageTag: fca_reporting_quarter
+		summarizeBy: none
+		sourceColumn: fca_reporting_quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = entity
+		mode: directLake
+		source
+			entityName: DimDate
+			schemaName: dbo
+			expressionSource: 'DirectLake - LH_UKCC_Platform'
+
+	annotation PBI_ResultType = Table
