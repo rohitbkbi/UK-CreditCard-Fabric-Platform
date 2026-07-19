@@ -121,10 +121,11 @@ def build_scd1_dimension(silver_table: str, gold_table: str, natural_key: str, s
 
 # CELL ********************
 
-# MAGIC %md
+%md
+%md
 # MAGIC ### Dimension Build
-# MAGIC Grain: **one row per natural key per tracked-attribute version**
-# MAGIC (SCD2 dims) or **one row per natural key** (SCD1 dims).
+# MAGIC Grain: **one row per natural key per tracked-attribute version**# MAGIC (SCD2 dims) or **one row per natural key** (SCD1 dims).
+
 
 # METADATA ********************
 
@@ -156,11 +157,12 @@ dim_geography = build_scd1_dimension("silver_geography",        "dbo.DimGeograph
 
 # CELL ********************
 
-# MAGIC %md
+%md
+%md
 # MAGIC ### DimDate
 # MAGIC Standard calendar dimension, generated (not sourced) — covers the
-# MAGIC full platform date range with UK banking attributes (billing cycle
-# MAGIC helpers, FCA reporting quarter).
+# MAGIC full platform date range with UK banking attributes (billing cycle# MAGIC helpers, FCA reporting quarter).
+
 
 # METADATA ********************
 
@@ -201,11 +203,12 @@ print(f"[OK] dbo.DimDate: {date_df.count()} rows")
 
 # CELL ********************
 
-# MAGIC %md
+%md
+%md
 # MAGIC ### Fact Build
 # MAGIC Grain: **one row per transaction / payment / statement / fraud case /
-# MAGIC collections event**. FKs resolved via point-in-time surrogate key
-# MAGIC lookup against the current dimension snapshot loaded above.
+# MAGIC collections event**. FKs resolved via point-in-time surrogate key# MAGIC lookup against the current dimension snapshot loaded above.
+
 
 # METADATA ********************
 

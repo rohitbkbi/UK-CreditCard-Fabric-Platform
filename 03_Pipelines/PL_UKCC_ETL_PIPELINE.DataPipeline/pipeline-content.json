@@ -256,14 +256,9 @@
       {
         "type": "WebActivity",
         "typeProperties": {
-          "url": "https://api.powerbi.com/v1.0/myorg/groups/@{pipeline().globalParameters.WorkspaceId}/datasets/@{pipeline().globalParameters.SemanticModelId}/refreshes",
           "method": "POST",
           "headers": {
             "Content-Type": "application/json"
-          },
-          "authentication": {
-            "type": "MSI",
-            "resource": "https://analysis.windows.net/powerbi/api"
           },
           "body": {
             "notifyOption": "MailOnFailure"
@@ -289,7 +284,6 @@
       {
         "type": "WebActivity",
         "typeProperties": {
-          "url": "@pipeline().globalParameters.OpsAlertWebhookUrl",
           "method": "POST",
           "headers": {
             "Content-Type": "application/json"

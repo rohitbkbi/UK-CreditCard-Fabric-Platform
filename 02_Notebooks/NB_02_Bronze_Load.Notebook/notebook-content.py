@@ -137,13 +137,14 @@ except Exception as e:
 
 # CELL ********************
 
-# MAGIC %md
+%md
+%md
 # MAGIC ### Table Maintenance
 # MAGIC `OPTIMIZE` + `ZORDER` on the natural key keeps point/range lookups fast
 # MAGIC as Bronze grows; `VACUUM` reclaims storage after the retention window.
 # MAGIC Run weekly via a dedicated maintenance pipeline, not on every batch,
-# MAGIC to avoid write-amplification overhead on high-frequency tables like
-# MAGIC `bronze_transaction`.
+# MAGIC to avoid write-amplification overhead on high-frequency tables like# MAGIC `bronze_transaction`.
+
 
 # METADATA ********************
 
@@ -158,7 +159,7 @@ except Exception as e:
 # MAGIC -- Executed by the weekly maintenance pipeline, parameterized by table_name
 # MAGIC -- OPTIMIZE dbo.bronze_transaction ZORDER BY (transaction_id, account_id);
 # MAGIC -- VACUUM dbo.bronze_transaction RETAIN 168 HOURS;
-SELECT 1;
+# MAGIC ;
 
 # METADATA ********************
 

@@ -9,7 +9,9 @@
         "startDateTime": "2026-07-19T00:00:00",
         "endDateTime": "2027-07-19T23:59:00",
         "localTimeZoneId": "GMT Standard Time",
-        "times": ["02:00"]
+        "times": [
+          "02:00"
+        ]
       }
     }
   ]

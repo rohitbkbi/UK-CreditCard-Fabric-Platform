@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "DataPipeline",
-    "displayName": "PL_UKCC_ETL_PIPELINE"
+    "type": "Lakehouse",
+    "displayName": "LH_UKCC_Platform"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b2b2b2b2-0000-4000-8000-000000000001"
+    "logicalId": "06d39ee9-75f1-b9c7-443f-3e148fe0546a"
   }
 }
